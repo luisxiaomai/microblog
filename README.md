@@ -1,1 +1,2 @@
-# Flask_Study_App
+# Flask-Study-app
+Study app for flask web development.
