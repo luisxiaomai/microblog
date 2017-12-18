@@ -6,11 +6,13 @@
     <p>The local date time is  {{moment(current_time).format("LLL")}}</p>
     <p>That was {{moment(current_time).fromNow(refresh=True)}} </p>
     #}
+
     <div class="page-header">
-        <h1>Hello, {% if known!=False %} {{known}} {% else %} Stranger {% endif %}!</h1>
+        <h1>Hello, {% if current_user.is_authenticated %} {{current_user.username}} {% else %} Stranger {% endif %}!</h1>
     </div>
+
     {#{{wtf.quick_form(form)}}#}
-    
+    {#
     <form class="form" method="POST">
             {{ form.hidden_tag() }}   
             
@@ -34,6 +36,6 @@
             
             {{ wtf.form_field(form.submit,class="btn btn-success btn-block") }}
     </form>
-
+    #}
 {% endblock %}
  

@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, Email
 
 
 class NameForm(FlaskForm):
-    name = StringField("What's your name?",validators=[DataRequired(), Email()],render_kw = {"placeholder": "Enter Email"})
+    name = StringField("What's your name?",validators=[DataRequired(), Email()],render_kw = {"placeholder": "Enter User Name"})
     submit = SubmitField("Submit")

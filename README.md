@@ -1,2 +1,2 @@
-# Flask-Study-app
-Study app for flask web development.
+# Flask-Study-App
+Study application for flask web development.

@@ -3,6 +3,8 @@
 {% block styles %}
     {{super()}}
     <link rel="stylesheet" href="{{url_for('static', filename='css/custom.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css')}}">
+    
 {% endblock %}
 {% block scripts %}
     {{ super() }}
@@ -15,7 +17,7 @@
     <link rel="icon" href="{{ url_for('static', filename = 'favicon1.png') }}" type="image/x-icon">
 {% endblock %}
 {% block navbar %}
-<div class="navbar navbar-inverse" role="navigation">
+<div class="navbar navbar-default " style="color:rgb(30, 255, 0)" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,6 +31,22 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user.username}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li> <a href = "{{url_for('auth.change_password')}}"> Change Password</a>   </li>                          
+                        <li> <a href = "{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a>   </li>                          
+                    </ul>
+                </li>
+                {% else %}
+                    
+                    <li> <a href = "{{url_for('auth.login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</a> </li>
+                    <li> <a href = "{{url_for('auth.register')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a> </li>
+                    
+                {% endif %}
             </ul>
         </div>
     </div>

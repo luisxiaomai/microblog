@@ -8,7 +8,7 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = "Flasky Admin <xx@xx.com>"
+    FLASKY_MAIL_SENDER = "Flasky Admin <test@gmail.com>"
     FLASKY_ADMIN = "xx@xx.com"
 
     @staticmethod
@@ -22,8 +22,8 @@ class DevelopmentConfig(Config):
     MAIL_PORT = 465
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
-    MAIL_USERNAME = "xx@xx.com"
-    MAIL_PASSWORD = "xx"
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SQLALCHEMY_DATABASE_URI = "sqlite:///"+os.path.join(basedir,"data-dev.sqlite")
 
 class TestingConfig(Config):
