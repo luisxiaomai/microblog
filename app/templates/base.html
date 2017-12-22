@@ -35,9 +35,14 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{current_user.username}} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img  src="{{current_user.image_url }}" style="float: left;height: 35px;width: 35px;border-radius:50%;margin-right: 10px;margin-top: -6px;" >
+                        
+                        <span>{{current_user.username}}</span>
+                    </a>
                     <ul class="dropdown-menu">
-                        <li> <a href = "{{url_for('auth.change_password')}}"> Change Password</a>   </li>                          
+                        <li> <a href = "{{url_for('main.user', username=current_user.username)}}">Profile</a></li>                 
+                        <li> <a href = "{{url_for('auth.change_password')}}">Change Password</a></li>         
                         <li> <a href = "{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a>   </li>                          
                     </ul>
                 </li>

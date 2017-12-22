@@ -25,6 +25,7 @@ class DevelopmentConfig(Config):
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SQLALCHEMY_DATABASE_URI = "sqlite:///"+os.path.join(basedir,"data-dev.sqlite")
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir,"app/uploads")
 
 class TestingConfig(Config):
     TESTING = True    
