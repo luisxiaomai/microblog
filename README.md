@@ -18,7 +18,7 @@ python manage.py runserver
 
 ## Contents
 
-  1. **Complete user authentication**(Register,Email Verification,Loggin,Forget/Reset Password)
+  1. **Complete user authentication**(Register,Email Verification,Login,Forget/Reset Password)
   
   ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/login.png)
 
