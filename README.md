@@ -6,14 +6,15 @@ Study application for flask web development.
 [Python 3+](https://www.python.org/downloads/) need be installed
 
 ## Installation
-
-```bash	
+```
 pip install -r requirements.txt
+```
 
 ## Run
 
 ```bash	
 python manage.py runserver
+```
 
 ## Contents
 
