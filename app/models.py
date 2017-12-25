@@ -47,7 +47,7 @@ class User(UserMixin, db.Model):
     image_filename = db.Column(db.String, default="user/default.png", nullable=True)
     image_url = db.Column(db.String, nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey("roles.id"))
-
+    posts = db.relationship("Post", backref="author", lazy="dynamic")
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -113,6 +113,16 @@ class User(UserMixin, db.Model):
     
     def is_administrator(self):
         return self.can(Permission.ADMINISTER)
+
+class Post(db.Model):
+    __tablename__ = "posts"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+
+
 
 class Permission:
     FOLLOW = 0x01

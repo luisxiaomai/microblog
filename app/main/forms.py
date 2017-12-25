@@ -5,6 +5,10 @@ from wtforms.validators import DataRequired, Email, Length, Regexp,ValidationErr
 from ..models import Role, User
 from .. import photos
 
+class PostForm(FlaskForm):
+    body = TextAreaField("What's on your mind?", validators=[DataRequired()])
+    submit = SubmitField("Submit")
+
 class NameForm(FlaskForm):
     name = StringField("What's your name?",validators=[DataRequired(), Email()],render_kw = {"placeholder": "Enter User Name"})
     submit = SubmitField("Submit")

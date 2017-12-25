@@ -1,41 +1,35 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
 
 {% block page_content %}
-    {#
-    <p>The local date time is  {{moment(current_time).format("LLL")}}</p>
-    <p>That was {{moment(current_time).fromNow(refresh=True)}} </p>
-    #}
+{#
+<p>The local date time is  {{moment(current_time).format("LLL")}}</p>
+<p>That was {{moment(current_time).fromNow(refresh=True)}} </p>
+#}
 
-    <div class="page-header">
-        <h1>Hello, {% if current_user.is_authenticated %} {{current_user.username}} {% else %} Stranger {% endif %}!</h1>
-    </div>
+<div class="page-header">
+    <h1>Hello, {% if current_user.is_authenticated %} {{current_user.username}} {% else %} Stranger {% endif %}!</h1>
+</div>
 
-    {#{{wtf.quick_form(form)}}#}
-    {#
-    <form class="form" method="POST">
-            {{ form.hidden_tag() }}   
-            
-            {% if form.name.errors %}
-            <div class="input-group  required has-error" >
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                {{ form.name(class="form-control",required='required') }}
-                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-            </div>
-            {% for error in form.name.errors %}
-                <div class="form-group has-erroTruer">
-                    <p class="help-block">{{ error }}</p>                                
-                </div>
-            {% endfor %}           
-            {% else %}
-            <div class="input-group"  >
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    {{ form.name(class="form-control",required='required') }}
-            </div>
-            {% endif %}
-            
-            {{ wtf.form_field(form.submit,class="btn btn-success btn-block") }}
-    </form>
-    #}
+<div >
+    {% if current_user.can(Permission.WRITE_ARTICLES) %}
+        <form class="form" method="POST">
+        {{ form.hidden_tag() }}  
+        <div  class="form-group ">
+            {{ form.body(class="form-control",required='required',placeholder="What's on your mind?") }}
+         </div>
+         <div  class="form-group ">
+            {{ wtf.form_field(form.submit,class="btn btn-success btn-block",id="post_submit")}}
+         </div>
+        </form>
+    {%endif %}
+</div>
+<div class="index_postList">
+{% include '_posts.html' %}
+</div>
+<div class="pagination" >
+    {{ macros.pagination_widget(pagination, 'main.index') }}
+</div>
 {% endblock %}
  

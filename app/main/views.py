@@ -1,12 +1,11 @@
 from datetime import datetime
-from flask import render_template, session, redirect, url_for
+from flask import render_template, session, redirect, url_for, request
 from flask_login import current_user
 from . import main
-from .forms import NameForm, EditProfileForm,EditProfileAdminForm
+from .forms import PostForm, EditProfileForm,EditProfileAdminForm
 from .. import db, photos
-from ..models import User,Role
+from ..models import User,Role,Post
 from ..email import send_email
-
 from ..decorators import admin_required, permission_required
 from ..models import Permission
 from flask_login import login_required
@@ -14,16 +13,15 @@ from flask_login import login_required
 
 @main.route("/", methods=["GET","POST"])
 def index():
-    form = NameForm()
-    if form.validate_on_submit():
-        queryUser=User.query.filter_by(username=form.name.data).first()
-        if queryUser is None:
-            user=User(username=form.name.data)
-            db.session.add(user)
-            send_email(form.name.data,"New user", "mail/new_user", user=user)
-        session["UserExisted"]=form.name.data
-        return redirect(url_for("main.index"))
-    return render_template("index.html", form=form,known=session.get("UserExisted",False))
+    form = PostForm()
+    if form.validate_on_submit() and current_user.can(Permission.WRITE_ARTICLES):
+        post = Post(body=form.body.data, author = current_user._get_current_object())
+        db.session.add(post)
+        return redirect(url_for('main.index'))
+    page = request.args.get("page",1,type=int)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(page, per_page=5,error_out=False)
+    posts = pagination.items
+    return render_template("index.html", form=form, posts=posts,pagination=pagination)
 
 
 @main.route('/admin', methods=["GET","POST"])
@@ -43,7 +41,12 @@ def user(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         abort(404)
-    return render_template("user.html", user=user)
+    page = request.args.get("page",1,type=int)
+    pagination = user.posts.order_by(Post.timestamp.desc()).paginate(page, per_page=5,error_out=False)
+    posts = pagination.items
+    return render_template("user.html", user=user, posts=posts,pagination=pagination)
+
+
 
 @main.route("/editProfile",methods=["GET","POST"])
 @login_required
@@ -53,7 +56,7 @@ def edit_user():
         current_user.location = form.location.data
         current_user.about_me = form.about_me.data
         if form.photo.data:
-            current_user.image_filename = photos.save(form.photo.data,name="user/" + current_user.name + ".")
+            current_user.image_filename = photos.save(form.photo.data,name="user/" + current_user.username + ".")
             current_user.image_url = photos.url(current_user.image_filename)
         db.session.add(current_user)
         return redirect(url_for("main.user",username=current_user.username))
@@ -76,7 +79,7 @@ def edit_profile_admin(id):
         user.about_me = form.about_me.data
         if form.photo.data:
             user.image_filename = photos.save(form.photo.data, name="user/" + user.username+".")
-            user.image_url = photos.url(current_user.image_filename)
+            user.image_url = photos.url(user.image_filename)
         db.session.add(user)
         return redirect(url_for('.user', username=user.username))
     form.email.data = user.email

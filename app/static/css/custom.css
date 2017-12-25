@@ -152,3 +152,55 @@
   }
 }
 
+ul.posts{
+    padding: 0px;
+    border-top:1px solid #e0e0e0;
+    margin-top:12px;
+}
+
+li.post{
+    list-style-type: none;
+    height: 62px;
+    margin-top:10px;
+    border-bottom:1px solid #e0e0e0;
+}
+li .post-thumbnail{
+    position: absolute;
+}
+li .profile-thumbnail{
+     height:50px;
+     width:50px;
+ }
+li .post-date{
+    float:right;
+}
+li .post-content{
+    margin-left:60px;
+}
+
+div.pagination{
+  float:right;
+}
+ul.pagination li a {
+  color:#4cae4c;
+}
+
+ul.pagination .active a {
+  background-color:#4cae4c;
+  border-color:#4cae4c;
+}
+.profile-thumbnail {
+  border-radius: 50%;
+}
+.page-header{
+  border-bottom-style: none;
+  margin: auto;
+}
+
+#post_submit{
+  float:right;
+  width:80px;
+}
+.index_postList{
+  margin-top:70px;
+}

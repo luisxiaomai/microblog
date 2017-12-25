@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block page_content %}
-<div class="page-header">
+{% import "_macros.html" as macros%}
+<div class="page-header" >
         <img src="{{user.image_url }}" style="height:100px;width:100px;border-radius: 50%" >
     
         <div id="userName"  style="display:inline;margin-left:30px">
@@ -41,4 +42,9 @@
             </p>
     </div>
 </div>
+{% include '_posts.html' %}
+<div class="pagination" >
+    {{ macros.pagination_widget(pagination, 'main.user',username=user.username) }}
+</div>
+ 
 {% endblock %}
