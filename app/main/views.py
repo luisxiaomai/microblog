@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, session, redirect, url_for, request
+from flask import render_template, session, redirect, url_for, request, abort
 from flask_login import current_user
 from . import main
 from .forms import PostForm, EditProfileForm,EditProfileAdminForm
@@ -89,3 +89,22 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('editProfile.html', form=form, user=user,image_url=user.image_url)
+
+@main.route("/post/<int:id>")
+def post(id):
+    post = Post.query.get_or_404(id)
+    return render_template("post.html", posts=[post])
+
+@main.route("/editPost/<int:id>", methods=['GET', 'POST'])
+@login_required
+def edit_post(id):
+    post = Post.query.get_or_404(id)
+    if current_user != post.author and not current_user.can(Permission.ADMINISTER):
+        abort(403)
+    form = PostForm()
+    if form.validate_on_submit():
+        post.body = form.body.data
+        db.session.add(post)
+        return redirect(url_for("main.post",id=post.id))
+    form.body.data = post.body
+    return render_template("editPost.html",form=form)

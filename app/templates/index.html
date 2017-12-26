@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% import "_macros.html" as macros %}
+{% import "_macros.html" as macros with context %}
 
 {% block page_content %}
 {#
@@ -12,19 +12,8 @@
     <h1>Hello, {% if current_user.is_authenticated %} {{current_user.username}} {% else %} Stranger {% endif %}!</h1>
 </div>
 
-<div >
-    {% if current_user.can(Permission.WRITE_ARTICLES) %}
-        <form class="form" method="POST">
-        {{ form.hidden_tag() }}  
-        <div  class="form-group ">
-            {{ form.body(class="form-control",required='required',placeholder="What's on your mind?") }}
-         </div>
-         <div  class="form-group ">
-            {{ wtf.form_field(form.submit,class="btn btn-success btn-block",id="post_submit")}}
-         </div>
-        </form>
-    {%endif %}
-</div>
+{{ macros.markdownWidget(form) }}
+
 <div class="index_postList">
 {% include '_posts.html' %}
 </div>
@@ -32,4 +21,7 @@
     {{ macros.pagination_widget(pagination, 'main.index') }}
 </div>
 {% endblock %}
- 
+{% block scripts %}
+    {{ super() }}
+    {{ pagedown.include_pagedown() }}
+{% endblock %}

@@ -160,7 +160,6 @@ ul.posts{
 
 li.post{
     list-style-type: none;
-    height: 62px;
     margin-top:10px;
     border-bottom:1px solid #e0e0e0;
 }
@@ -176,6 +175,7 @@ li .post-date{
 }
 li .post-content{
     margin-left:60px;
+    min-height: 60px;
 }
 
 div.pagination{
@@ -203,4 +203,55 @@ ul.pagination .active a {
 }
 .index_postList{
   margin-top:70px;
+}
+.post-footer{
+  text-align: right;
+  margin-bottom: 2px;
+}
+a:hover {
+  text-decoration: none
+}
+
+.profile-box {  
+  position: relative;  
+
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin:0 auto;  
+  
+}  
+ .profile-box img {  
+    position: absolute;  
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin:0 auto; 
+    left: 0;  
+
+}  
+
+.profile-box .caption {  
+    background-color: rgba(49, 46, 46, 0.8);  
+    position: absolute;  
+    color: #fff;  
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin:0 auto;  
+    left: 0;  
+    opacity: 0;  
+ 
+}  
+
+.profile-box h3 {  
+    margin-top:35px;
+}  
+
+.profile-box:hover .fade-caption {  
+    opacity: 1;  
+}  
+
+.index_postList {
+  margin-top: 30px;
 }

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros with context %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Edit Post</h1>
+</div>
+
+{{ macros.markdownWidget(form) }}
+
+{% endblock%}
+{% block scripts %}
+    {{ super() }}
+    {{ pagedown.include_pagedown() }}
+{% endblock %}

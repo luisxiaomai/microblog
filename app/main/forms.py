@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_pagedown.fields import PageDownField
 from wtforms import StringField, SubmitField, TextAreaField, BooleanField, SelectField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import DataRequired, Email, Length, Regexp,ValidationError
@@ -6,7 +7,7 @@ from ..models import Role, User
 from .. import photos
 
 class PostForm(FlaskForm):
-    body = TextAreaField("What's on your mind?", validators=[DataRequired()])
+    body = PageDownField(validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 class NameForm(FlaskForm):

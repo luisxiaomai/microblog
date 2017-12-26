@@ -1,53 +1,5 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block styles %}
-{{super()}}
-<style>
-   
-
- .box {  
-  position: relative;  
-
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  margin:0 auto;  
-  
-}  
- .box img {  
-    position: absolute;  
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin:0 auto; 
-    left: 0;  
-
-}  
-
-.box .caption {  
-    background-color: rgba(49, 46, 46, 0.8);  
-    position: absolute;  
-    color: #fff;  
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin:0 auto;  
-    left: 0;  
-    opacity: 0;  
- 
-}  
-
-.box h3 {  
-    margin-top:35px;
-}  
-
- .box:hover .fade-caption {  
-    opacity: 1;  
-}    
-</style>
-
-{% endblock %}
-
 {% block page_content %}
 
 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -64,7 +16,7 @@
                     <div class="form-group " style="height: 100px">
                         {{form.photo(style="display: none;")}}
                         
-                      <div class="box" align="center">  
+                      <div class="profile-box" align="center">  
                           <img id="userImage" class="image" src="{{image_url }}" >
                           <span id="userImageMask" class="caption fade-caption"> <h3>Edit</h3>   </span>
                       </div>
@@ -74,7 +26,7 @@
                   </div>  
                   {% elif field.type=="BooleanField" %}
                       <div  class="form-group ">
-                          <div class="checkbox checkbox-primary" style="display: inline;">
+                          <div class="checkbox checkbox-primary" >
                               {{ form.confirmed() }}
                           <label>
                               {{ form.confirmed.label.text}}
