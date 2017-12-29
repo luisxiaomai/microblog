@@ -24,7 +24,7 @@ python manage.py runserver
 
   2. **Simple Blog System** 
   
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/post.png)
+  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/markdown.png)
 
  
 
