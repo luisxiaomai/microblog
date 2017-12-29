@@ -2,6 +2,7 @@
 {% block page_content %}
 {% import "_macros.html" as macros %}
 <div class="page-header" >
+
         <img src="{{user.image_url }}" style="height:100px;width:100px;border-radius: 50%" >
     
         <div id="userName"  style="display:inline;margin-left:30px">
@@ -53,6 +54,7 @@
             </p>
     </div>
 </div>
+    <div class="colorgraph"></div>
 
 {% include '_posts.html' %}
 {% if pagination %}
