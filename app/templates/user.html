@@ -40,11 +40,24 @@
                 Member since {{ moment(user.member_since).format('L') }}.
                 Last seen {{ moment(user.last_seen).fromNow() }}.
             </p>
+            <p>
+                {% if current_user.can(Permission.FOLLOW) and user != current_user %}
+                    {% if not current_user.is_following(user) %}
+                    <a href="{{ url_for('main.follow', username=user.username) }}" class="btn btn-default">Follow</a>
+                    {% else %}
+                    <a href="{{ url_for('main.unfollow', username=user.username) }}" class="btn btn-default">Unfollow</a>
+                    {% endif %}
+                {% endif %}
+                <a href="{{ url_for('main.followers', username=user.username) }}">Followers: <span class="badge">{{ user.followers.count()-1 }}</span></a>
+                <a href="{{ url_for('main.followed_by', username=user.username) }}">Following: <span class="badge">{{ user.followed.count()-1 }}</span></a>
+            </p>
     </div>
 </div>
+
 {% include '_posts.html' %}
-<div class="pagination" >
-    {{ macros.pagination_widget(pagination, 'main.user',username=user.username) }}
-</div>
- 
+{% if pagination %}
+    <div class="pagination" >
+        {{ macros.pagination_widget(pagination, 'main.user',username=user.username) }}
+    </div>
+{% endif %}
 {% endblock %}

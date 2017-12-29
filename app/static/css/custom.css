@@ -154,7 +154,6 @@
 
 ul.posts{
     padding: 0px;
-    border-top:1px solid #e0e0e0;
     margin-top:12px;
 }
 
@@ -201,6 +200,8 @@ ul.pagination .active a {
   float:right;
   width:80px;
 }
+
+
 .index_postList{
   margin-top:70px;
 }
@@ -230,7 +231,13 @@ a:hover {
     left: 0;  
 
 }  
-
+.img-rounded{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin:0 auto; 
+  left: 0;  
+}
 .profile-box .caption {  
     background-color: rgba(49, 46, 46, 0.8);  
     position: absolute;  
@@ -252,6 +259,8 @@ a:hover {
     opacity: 1;  
 }  
 
-.index_postList {
-  margin-top: 30px;
+
+.badge{
+  background-color: rgba(27,31,35,0.08);
+  color:#586069;
 }

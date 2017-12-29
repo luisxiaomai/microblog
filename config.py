@@ -25,6 +25,8 @@ class DevelopmentConfig(Config):
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SQLALCHEMY_DATABASE_URI = "sqlite:///"+os.path.join(basedir,"data-dev.sqlite")
+    FLASKY_POSTS_PER_PAGE = os.environ.get("FLASKY_POSTS_PER_PAGE") or 8
+    FLASKY_FOLLOWERS_PER_PAGE =  os.environ.get("FLASKY_FOLLOWERS_PER_PAGE") or 8
     UPLOADED_PHOTOS_DEST = os.path.join(basedir,"app/uploads")
 
 class TestingConfig(Config):
