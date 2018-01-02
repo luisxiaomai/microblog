@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```bash	
 python manage.py runserver
 ```
-Navigate to http://127.0.0.1:5000, and then use xx@sap.com/xx to login.
+Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
 ## Contents
 
