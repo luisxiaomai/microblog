@@ -2,9 +2,9 @@ from datetime import datetime
 from flask import render_template, session, redirect, url_for, request, abort, current_app, flash,make_response
 from flask_login import current_user
 from . import main
-from .forms import PostForm, EditProfileForm,EditProfileAdminForm
+from .forms import PostForm, EditProfileForm,EditProfileAdminForm, CommentForm
 from .. import db, photos
-from ..models import User,Role,Post
+from ..models import User,Role,Post,Comment
 from ..email import send_email
 from ..decorators import admin_required, permission_required
 from ..models import Permission
@@ -98,10 +98,19 @@ def edit_profile_admin(id):
     form.about_me.data = user.about_me
     return render_template('editProfile.html', form=form, user=user,image_url=user.image_url)
 
-@main.route("/post/<int:id>")
+@main.route("/post/<int:id>",methods=['GET', 'POST'])
 def post(id):
     post = Post.query.get_or_404(id)
-    return render_template("post.html", posts=[post])
+    form = CommentForm()
+    if current_user.can(Permission.COMMENT) and form.validate_on_submit():
+        comment = Comment(body=form.body.data,author=current_user._get_current_object(),post=post)
+        db.session.add(comment)
+        return redirect(url_for('main.post',id=id))
+    page = request.args.get('page', 1, type=int)
+    pagination = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
+    comments = pagination.items
+    return render_template("post.html", form=form,posts=[post],comments=comments,pagination=pagination)
+
 
 @main.route("/editPost/<int:id>", methods=['GET', 'POST'])
 @login_required
@@ -116,6 +125,7 @@ def edit_post(id):
         return redirect(url_for("main.post",id=post.id))
     form.body.data = post.body
     return render_template("editPost.html",form=form)
+
 
 @main.route('/follow/<username>')
 @login_required

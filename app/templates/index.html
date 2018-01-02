@@ -14,7 +14,18 @@
     
 </div>
 
-{{ macros.markdownWidget(form) }}
+{% if current_user.can(Permission.WRITE_ARTICLES) %}
+    {{ macros.markdownWidget(form) }}
+{% else %}
+    <div class="discussion-timeline-actions">
+        <div class="flash flash-warn mt-3">
+            <a href="{{url_for('auth.register')}}" class="btn btn-success">Sign up for free</a>
+            <strong>to post a blog</strong>.
+            Already have an account?
+            <a href="{{url_for('auth.login')}}" >Sign in to post.</a> Already login? <a href="{{url_for('main.user',username='Administrator')}}" >Please contact Administrator</a>
+        </div>
+    </div>
+{% endif %}  
 
 <div class="post-tabs">
     <ul class="nav nav-tabs">

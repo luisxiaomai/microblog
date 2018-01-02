@@ -10,6 +10,10 @@ class PostForm(FlaskForm):
     body = PageDownField(validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+class CommentForm(FlaskForm):
+    body = PageDownField(validators=[DataRequired()])
+    submit = SubmitField("Comment")
+
 class NameForm(FlaskForm):
     name = StringField("What's your name?",validators=[DataRequired(), Email()],render_kw = {"placeholder": "Enter User Name"})
     submit = SubmitField("Submit")
