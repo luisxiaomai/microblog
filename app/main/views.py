@@ -107,7 +107,7 @@ def post(id):
         db.session.add(comment)
         return redirect(url_for('main.post',id=id))
     page = request.args.get('page', 1, type=int)
-    pagination = Comment.query.filter_by(post_id=id).order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
+    pagination = Comment.query.filter_by(post_id=id,disable=False).order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
     comments = pagination.items
     return render_template("post.html", form=form,posts=[post],comments=comments,pagination=pagination)
 
@@ -203,3 +203,30 @@ def show_followed():
     resp = make_response(redirect(url_for('.index')))
     resp.set_cookie('show_followed', '1', max_age=30*24*60*60)
     return resp
+
+@main.route("/moderate-comments", methods=["GET","POST"])
+@permission_required(Permission.MODERATE_COMMENTS)
+@login_required
+def moderate_comments():
+    page = request.args.get('page', 1, type=int)
+    pagination = Comment.query.order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
+    comments = pagination.items
+    return render_template('comments.html', pagination=pagination,comments=comments)
+
+@main.route("/disable-comment/<int:id>", methods=["GET","POST"])
+@permission_required(Permission.MODERATE_COMMENTS)
+@login_required
+def disable_comment(id):
+    comment = Comment.query.get_or_404(id)
+    comment.disable = True
+    db.session.add(comment)
+    return redirect(url_for("main.moderate_comments", page=request.args.get('page', 1, type=int)))
+
+@main.route("/enable-comment/<int:id>", methods=["GET","POST"])
+@permission_required(Permission.MODERATE_COMMENTS)
+@login_required
+def enable_comment(id):
+    comment = Comment.query.get_or_404(id)
+    comment.disable = False
+    db.session.add(comment)
+    return redirect(url_for("main.moderate_comments", page=request.args.get('page', 1, type=int)))

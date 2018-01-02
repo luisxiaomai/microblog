@@ -26,8 +26,11 @@
                             <span class="label label-danger">Edit [Admin]</span>
                         </a>
                     {% endif %}
-                    <a href="{{ url_for('main.post', id=post.id) }}">
+                    <a href="{{ url_for('main.post', id=post.id)}}#comments">
                         <span class="label label-default">Permalink</span>
+                    </a>
+                    <a href="{{ url_for('main.post', id=post.id)}}#comments">
+                        <span class="label label-primary">{{post.comments.filter_by(disable=False).count()}} comments</span>
                     </a>
                 </div>
             </div>

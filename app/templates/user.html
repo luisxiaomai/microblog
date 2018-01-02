@@ -9,11 +9,7 @@
             <h1 style="display:inline">{{ user.username }}</h1>
             
             {% if user==current_user and current_user.is_administrator()==False %}
-            {#
-            <button type="button" class="btn btn-default btn-sm" style="margin-bottom: 10px;margin-left: 10px;">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit
-            </button>
-            #}
+
             <a class="btn btn-default btn-sm" href='{{url_for("main.edit_user")}}' style="margin-bottom: 10px;margin-left: 10px;"><span class="glyphicon glyphicon-pencil"></span>
                 Edit</a>
             
