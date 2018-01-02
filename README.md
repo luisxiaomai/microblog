@@ -26,7 +26,7 @@ python manage.py runserver
   
   ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/signpost.png)
   ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/markdown.png)
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/post.png)
+  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/comment.png)
 
  
 
