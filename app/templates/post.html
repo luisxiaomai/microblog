@@ -30,3 +30,13 @@
     </div>
     {% endif %}  
 {% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript">
+        window.onload = function () {
+            console.log($(".post-body"));
+            $(".post-body").css("max-height","none");
+        };
+    </script>
+{% endblock %}

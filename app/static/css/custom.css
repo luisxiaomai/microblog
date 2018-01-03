@@ -172,7 +172,9 @@ li.post{
 
 li .post-body{
   padding: 10px;
-
+  max-height: 90px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 li .post-content{
     margin-left:60px;
