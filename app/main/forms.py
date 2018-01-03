@@ -8,11 +8,11 @@ from .. import photos
 
 class PostForm(FlaskForm):
     title = StringField(validators=[DataRequired(),Length(1, 64)])
-    body = PageDownField(validators=[DataRequired()])
+    body = PageDownField(validators=[DataRequired()],render_kw = {"placeholder":"What's on your mind?"})
     submit = SubmitField("Submit")
 
 class CommentForm(FlaskForm):
-    body = PageDownField(validators=[DataRequired()])
+    body = PageDownField(validators=[DataRequired()],render_kw = {"placeholder":"Leave your comment"})
     submit = SubmitField("Comment")
 
 class NameForm(FlaskForm):
