@@ -44,7 +44,6 @@
                 {% if form.__class__.__name__=="PostForm" %}
                     <div class="discussion-topic-header">
                             {{ form.title(class="form-control input-block input-contrast",required='required',placeholder="Title",only_input=True) }}
-                            
                     </div>
                 {% endif %}
                 <div id="exTab2" >	
@@ -63,7 +62,9 @@
                                     </div>   
                                 </div>
                                 <div class="tab-pane" id="2">
-                                    {{ form.body(only_preview=True) }}
+                                    <div  class="form-group ">
+                                        {{ form.body(only_preview=True) }}
+                                    </div>   
                                 </div>
                                 <div class="post-markdown">
                                         <a class="tabnav-extra" href="https://guides.github.com/features/mastering-markdown/" target="_blank" data-ga-click="Markdown Toolbar, click, help">

@@ -35,8 +35,8 @@
     {{ super() }}
     <script type="text/javascript">
         window.onload = function () {
-            console.log($(".post-body"));
-            $(".post-body").css("max-height","none");
+            document.getElementsByClassName("post-body")[0].style.maxHeight = "none";
+            //$(".post-body").css("max-height","none");
         };
     </script>
 {% endblock %}
