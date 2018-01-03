@@ -171,10 +171,10 @@ li.post{
 }
 
 li .post-body{
-  padding: 10px;
+  padding: 10px 0;
   max-height: 90px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 li .post-content{
     margin-left:60px;
@@ -369,11 +369,6 @@ a:hover {
 .comment-footer .btn{
   display:inline;
   font-size:12px;
-}
-
-.post-footer .read-more{
-  margin-left: 10px;
-
 }
 
 .post-footer-right{
