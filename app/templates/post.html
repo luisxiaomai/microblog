@@ -5,12 +5,12 @@
 
     {% include '_posts.html' %}
     <div class="post-tabs">
-        <h3 id="comments">Comemnts</h3>
+        <h3 id="comments">{{pagination.total}} Comemnts</h3>
     </div>
  
         
-    {% include '_comments.html' %}
     {% if pagination %}
+         {% include '_comments.html' %}
         <div class="comment-pagination" >
             {{ macros.pagination_widget(pagination, 'main.post',id=posts[0].id) }}
         </div>

@@ -15,7 +15,9 @@
 </div>
 
 {% if current_user.can(Permission.WRITE_ARTICLES) %}
-    {{ macros.markdownWidget(form) }}
+
+        {{ macros.markdownWidget(form) }}
+   
 {% else %}
     <div class="discussion-timeline-actions">
         <div class="flash flash-warn mt-3">

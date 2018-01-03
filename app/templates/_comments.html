@@ -14,6 +14,15 @@
                             </strong>
                             <span>commented</span>
                             {{ moment(comment.timestamp).fromNow() }}
+                            {% if moderate %}
+                            <div class="comment-footer">
+                                {% if comment.disable!=True %}
+                                   <a class="btn btn-danger" href='{{url_for("main.disable_comment",id=comment.id, page=pagination.page)}}'>Disable</a>
+                                {% else %}
+                                    <a class="btn btn-primary" href='{{url_for("main.enable_comment",id=comment.id,page=pagination.page)}}'>Enable</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                         </div>
                         <div class="panel-body">
                             {% if comment.body_html %}
@@ -22,15 +31,7 @@
                                 {{ comment.body }}
                             {% endif %}
                         </div>
-                        {% if moderate %}
-                            <div class="comment-footer">
-                                {% if comment.disable!=True %}
-                                   <a class="btn btn-danger" href='{{url_for("main.disable_comment",id=comment.id)}}'>Disable</a>
-                                {% else %}
-                                    <a class="btn btn-primary" href='{{url_for("main.enable_comment",id=comment.id)}}'>Enable</a>
-                                {% endif %}
-                            </div>
-                        {% endif %}
+                      
                     </div>
                 </li>
             {% endif %}

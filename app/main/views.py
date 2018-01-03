@@ -16,7 +16,7 @@ from flask_login import login_required
 def index():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():
-        post = Post(body=form.body.data,author=current_user._get_current_object())
+        post = Post(title=form.title.data,body=form.body.data,author=current_user._get_current_object())
         db.session.add(post)
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
@@ -121,9 +121,12 @@ def edit_post(id):
     form = PostForm()
     if form.validate_on_submit():
         post.body = form.body.data
+        post.title = form.title.data
         db.session.add(post)
         return redirect(url_for("main.post",id=post.id))
+    
     form.body.data = post.body
+    form.title.data = post.title
     return render_template("editPost.html",form=form)
 
 

@@ -7,6 +7,7 @@ from ..models import Role, User
 from .. import photos
 
 class PostForm(FlaskForm):
+    title = StringField(validators=[DataRequired(),Length(1, 64)])
     body = PageDownField(validators=[DataRequired()])
     submit = SubmitField("Submit")
 
