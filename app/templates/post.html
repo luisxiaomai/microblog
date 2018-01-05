@@ -33,10 +33,15 @@
 
 {% block scripts %}
     {{ super() }}
+    {{ pagedown.include_pagedown() }}    
+    <!--
+
     <script type="text/javascript">
         window.onload = function () {
             document.getElementsByClassName("post-body")[0].style.maxHeight = "none";
+           
             //$(".post-body").css("max-height","none");
         };
+    -->
     </script>
 {% endblock %}

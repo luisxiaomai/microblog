@@ -8,7 +8,7 @@ from .. import photos
 
 class PostForm(FlaskForm):
     title = StringField(validators=[DataRequired(),Length(1, 64)])
-    body = PageDownField(validators=[DataRequired()],render_kw = {"placeholder":"What's on your mind?"})
+    body = TextAreaField(validators=[DataRequired()],render_kw = {"placeholder":"Loading..."})
     submit = SubmitField("Submit")
 
 class CommentForm(FlaskForm):

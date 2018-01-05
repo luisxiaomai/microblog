@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_macros.html" as macros with context %}
+{% block head %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
+    
+{% endblock %}
+
+
+
 
 {% block page_content %}
 {#
@@ -8,15 +17,14 @@
 <p>That was {{moment(current_time).fromNow(refresh=True)}} </p>
 #}
 
-<div class="page-header">
-    <h1>Hello, {% if current_user.is_authenticated %} {{current_user.username}} {% else %} Stranger {% endif %}!</h1>
-    <hr class="colorgraph">
-    
-</div>
+
 
 {% if current_user.can(Permission.WRITE_ARTICLES) %}
-
-        {{ macros.markdownWidget(form) }}
+    <div class="page-header">
+            <h2>Tell your story...</h2>
+            
+    </div>
+    {{ macros.tinyMCEWidget(form) }}
    
 {% else %}
     <div class="discussion-timeline-actions">

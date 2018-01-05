@@ -1,6 +1,6 @@
  <ul class="posts">
         {% for post in posts %}
-        <li class="post">
+        <li {% if show_more != False %} class="post" {% else %} class="single post" {% endif %}>
             <h3 class="post-title"><a href="{{ url_for('main.post', id=post.id)}}" class="post-link">{{post.title}}</a></h3>    
             <div class="post-thumbnail">
                 <a href="{{ url_for('main.user', username=post.author.username) }}">
@@ -10,15 +10,15 @@
             <div class="post-content">
                 <div class="post-author"><strong><a class="userLink" href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.username }}</a></strong>&nbsp;&nbsp;&nbsp;<strong style="color:#999">·</strong>&nbsp;</div>
                 <div class="post-date"><strong> {{ moment(post.timestamp).format('LL') }}</strong> </div>
-                <div class="post-body">
+                <div {% if show_more != False %} class="post-body" {% else %} class="single post-body" {% endif %} >
                 {% if post.body_html %}
                     {{ post.body_html | safe }}
                 {% else %}
-                    {{ post.body }}
+                    {{ post.body | safe }}
                 {% endif %}
                 </div>
                 <div class="post-footer">
-                    {% if posts|length >1 %}
+                    {% if show_more != False %}
                         <a class="read-more" href="{{ url_for('main.post', id=post.id)}}">
                             Read More →
                         </a>

@@ -90,12 +90,10 @@ body{
   background-color: #5cb85c;
   border-color: #4cae4c;
 }
-.navbar-default .navbar-brand {
-  color: #ecf0f1;
-}
+
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #279227;
+  color: white;
 }
 .navbar-default .navbar-text {
   color: #ecf0f1;
@@ -163,19 +161,34 @@ ul.posts{
 
 li.post{
     list-style-type: none;
-    padding:10px 0;
-    border-bottom:1px solid #e0e0e0;
+    padding:10px;
+    border:1px solid #e0e0e0;
+    margin-bottom: 10px;
 }
 .post-thumbnail{
     position: absolute;
 }
 
 li .post-body{
+  position: relative;
   padding: 10px 0;
   max-height: 90px;
   overflow: hidden;
   margin-bottom: 10px;
 }
+/*
+li .post-body::before {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 50%);
+  content: '...';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 70px;
+  width: 25%;
+  text-align: center;
+}
+*/
+
 li .post-content{
     margin-left:60px;
     min-height: 60px;
@@ -383,7 +396,7 @@ a:hover {
   padding:10px;
 }
 
-.post-markdown{
+.comment-markdown{
   float: left;
 }
 .tabnav-extra{
@@ -412,8 +425,8 @@ a:hover {
 .timeline-comment .form-control:focus{
   background-color: #fff; 
 }
-.mark-down .timeline-comment::before,
-.mark-down .timeline-comment::after {
+.post-container .timeline-comment::before,
+.post-container .timeline-comment::after {
   position: absolute;
   top: 11px;
   left: -16px;
@@ -427,11 +440,11 @@ a:hover {
   pointer-events: none;
 
 }
-.mark-down .timeline-comment::before {
+.post-container .timeline-comment::before {
   border-right-color:#d1d5da ;
   border-width: 8px;
 }
-.mark-down .timeline-comment::after {
+.post-container .timeline-comment::after {
   border-width: 7px;
   border-right-color: #fff;
   margin-top: 1px;
@@ -442,17 +455,20 @@ a:hover {
   clear:both;
   display: block;
 }
-.post-title{
-  margin-left: 60px;
-  margin-top: 0px;
-}
 
-.post-title{
-  margin-left: 60px;
-  margin-top: 0px;
-}
 .post-author{
   display:inline;
+}
+.post-title{
+  margin-left: 60px;
+  margin-top: 0px;
+}
+.post-title a{
+  color:black;
+}
+.read-more,
+.read-more:hover{
+  color: rgb(144, 149, 152);
 }
 
 .post-date{
@@ -462,4 +478,45 @@ a:hover {
 
 #flask-pagedown-body-preview{
   min-height: 214px;
+}
+.post-container{
+  padding: 10px;
+}
+#post_submit{
+  margin-right:5px;
+  margin-bottom:5px;
+}
+#post_submit,
+#comment_submit{
+  float:right;
+  width:auto;
+}
+
+textarea{
+  height:401px;
+}
+
+.single.post{
+  border: none;
+}
+.single.post-body{
+  max-height: none;
+}
+
+
+.navbar-brand{
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  text-align: center;
+}
+
+.navbar-brand:hover{
+
+  background-color: white;
+}
+
+.navbar-brand span{
+  color:#4cae4c;
+  font-size:4rem;
 }

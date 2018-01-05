@@ -100,6 +100,7 @@ def edit_profile_admin(id):
 
 @main.route("/post/<int:id>",methods=['GET', 'POST'])
 def post(id):
+    show_more = False
     post = Post.query.get_or_404(id)
     form = CommentForm()
     if current_user.can(Permission.COMMENT) and form.validate_on_submit():
@@ -109,7 +110,7 @@ def post(id):
     page = request.args.get('page', 1, type=int)
     pagination = Comment.query.filter_by(post_id=id,disable=False).order_by(Comment.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
     comments = pagination.items
-    return render_template("post.html", form=form,posts=[post],comments=comments,pagination=pagination)
+    return render_template("post.html", form=form,posts=[post],comments=comments,pagination=pagination,show_more=show_more)
 
 
 @main.route("/editPost/<int:id>", methods=['GET', 'POST'])
