@@ -116,20 +116,15 @@ body{
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color:white;
-  background-color: white;
+  background-color: #5cb85c;
 }
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-  color: #279227;
-  background-color: #4cae4c;
-}
+
 .navbar-default .navbar-toggle {
-  border-color: #4cae4c;
+  border-color: #ecf0f1;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #4cae4c;
+  background-color:#5cb85c;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ecf0f1;

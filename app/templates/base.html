@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %}Flasky{% endblock %}
+{% block title %}Lite Blog{% endblock %}
 
 {% block styles %}
     {{super()}}
@@ -11,14 +11,13 @@
     {{ super() }}
     {{ moment.include_moment() }}
     {# moment.lang('es') #}
-
+  
 {% endblock %}
 {% block head %}
     {{ super() }}
-    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/favicon1.png') }}" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename = 'images/favicon1.png') }}" type="image/x-icon">
-   
-    
+    <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/brand.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename = 'images/brand.png') }}" type="image/x-icon">
+
 {% endblock %}
 {% block navbar %}
 <div class="navbar navbar-default " style="color:rgb(30, 255, 0)" role="navigation">
@@ -40,7 +39,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li class="active">
+                    <a href="/">Home</a>
+                </li>
+
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -71,6 +73,7 @@
         </div>
     </div>
 </div>
+    
 {% endblock %}
 {% block content %}
 <div class="container">
