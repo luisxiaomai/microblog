@@ -21,13 +21,10 @@ Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
   1. **Complete user authentication**(Register,Email Verification,Login,Forget/Reset Password)
   
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/login.png)
 
   2. **Simple Blog System** 
   
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/signpost.png)
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/markdown.png)
-  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/comment.png)
+  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/Blog_Lite.png)
 
  
 
