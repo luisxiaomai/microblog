@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %}Lite Blog{% endblock %}
+{% block title %}Blog Lite{% endblock %}
 
 {% block styles %}
     {{super()}}
@@ -42,9 +42,11 @@
                 <li class="active">
                     <a href="/">Home</a>
                 </li>
-
-
+                <li >
+                    <a href="{{url_for('main.create_post')}}">New Story</a>
+                </li>
             </ul>
+           
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
                 <li class="dropdown">
@@ -73,16 +75,20 @@
         </div>
     </div>
 </div>
-    
+ 
 {% endblock %}
-{% block content %}
+
+{% block content %}    
+{% block backImage_content %}{% endblock %}
+
+
 <div class="container">
+{% block page_content %}{% endblock %}
     {% for message in get_flashed_messages()%}
     <div class="alert alert-warning">
         <button type="button", class="close" data-dimiss="alert">&times;</button>  
         {{message}}  
     </div> 
     {% endfor%}
-    {% block page_content %}{% endblock %}
 </div>
 {% endblock %}

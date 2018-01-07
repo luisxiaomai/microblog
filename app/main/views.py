@@ -15,21 +15,24 @@ from flask_login import login_required
 @main.route("/", methods=["GET","POST"])
 def index():
     form = PostForm()
-    if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():
-        post = Post(title=form.title.data,body=form.body.data,author=current_user._get_current_object())
-        db.session.add(post)
-        return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
     show_followed = False
+    show_yours = False
     if current_user.is_authenticated:
         show_followed = bool(request.cookies.get('show_followed', ''))
+        show_yours = bool(request.cookies.get('show_yours', ''))
     if show_followed:
         query = current_user.followed_posts
+    elif show_yours:
+        query = Post.query.filter_by(author=current_user)
     else:
         query = Post.query
+    print(show_yours)
+    print(show_followed)
+    print(query)
     pagination = query.order_by(Post.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
     posts = pagination.items
-    return render_template('index.html', form=form, posts=posts,show_followed=show_followed, pagination=pagination)
+    return render_template('index.html', form=form, posts=posts,show_followed=show_followed, pagination=pagination,show_yours=show_yours)
 
 
 @main.route('/admin', methods=["GET","POST"])
@@ -52,7 +55,7 @@ def user(username):
     page = request.args.get("page",1,type=int)
     pagination = user.posts.order_by(Post.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'],error_out=False)
     posts = pagination.items
-    return render_template("user.html", user=user, posts=posts,pagination=pagination)
+    return render_template("user.html", user=user, posts=posts,pagination=pagination)  
 
 
 
@@ -112,6 +115,16 @@ def post(id):
     comments = pagination.items
     return render_template("post.html", form=form,posts=[post],comments=comments,pagination=pagination,show_more=show_more)
 
+@main.route("/createPost", methods=["GET","POST"])
+@login_required
+def create_post():
+    form = PostForm()
+    if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():
+        post = Post(title=form.title.data,body=form.body.data,author=current_user._get_current_object())
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('main.post',id=post.id))
+    return render_template("editPost.html",form=form,createPostFlag=True)
 
 @main.route("/editPost/<int:id>", methods=['GET', 'POST'])
 @login_required
@@ -125,7 +138,6 @@ def edit_post(id):
         post.title = form.title.data
         db.session.add(post)
         return redirect(url_for("main.post",id=post.id))
-    
     form.body.data = post.body
     form.title.data = post.title
     return render_template("editPost.html",form=form)
@@ -198,14 +210,24 @@ def followed_by(username):
 def show_all():
     resp = make_response(redirect(url_for('.index')))
     resp.set_cookie('show_followed', '', max_age=30*24*60*60)
+    resp.set_cookie('show_yours', '', max_age=30*24*60*60)
+
     return resp
 
+@main.route('/yours')
+@login_required
+def show_yours():
+    resp = make_response(redirect(url_for('.index')))
+    resp.set_cookie('show_yours', '1', max_age=30*24*60*60)
+    resp.set_cookie('show_followed', '', max_age=30*24*60*60)
+    return resp
 
 @main.route('/followed')
 @login_required
 def show_followed():
     resp = make_response(redirect(url_for('.index')))
     resp.set_cookie('show_followed', '1', max_age=30*24*60*60)
+    resp.set_cookie('show_yours', '', max_age=30*24*60*60)
     return resp
 
 @main.route("/moderate-comments", methods=["GET","POST"])

@@ -8,37 +8,30 @@
     
 {% endblock %}
 
-{% block page_content %}
-{#
-<p>The local date time is  {{moment(current_time).format("LLL")}}</p>
-<p>That was {{moment(current_time).fromNow(refresh=True)}} </p>
-#}
-
-
-
-{% if current_user.can(Permission.WRITE_ARTICLES) %}
-    <div class="page-header">
-            <h2>Tell your story...</h2>
-            
-    </div>
-    {{ macros.tinyMCEWidget(form) }}
-   
-{% else %}
-    <div class="discussion-timeline-actions">
-        <div class="flash flash-warn mt-3">
-            <a href="{{url_for('auth.register')}}" class="btn btn-success">Sign up for free</a>
-            <strong>to post a blog</strong>.
-            Already have an account?
-            <a href="{{url_for('auth.login')}}" >Sign in to post.</a> Already login? <a href="{{url_for('main.user',username='Administrator')}}" >Please contact Administrator</a>
+{% block backImage_content %}
+<header class="masthead" style="background-image: url('static/images/home-bg.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Blog Lite</h1>
+              <span class="subheading">A clean, lite blog system to record Life</span>
+            </div>
+          </div>
         </div>
-    </div>
-{% endif %}  
+      </div>
+</header>
+{% endblock %}
 
+{% block page_content %}
 <div class="post-tabs">
     <ul class="nav nav-tabs">
-        <li{% if not show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
+        <li{% if not show_followed and not show_yours  %} class="active"{% endif %}><a href="{{ url_for('.show_all') }}">All</a></li>
         {% if current_user.is_authenticated %}
-        <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Following</a></li>
+            <li{% if show_followed %} class="active"{% endif %}><a href="{{ url_for('.show_followed') }}">Following</a></li>
+            <li{% if show_yours %} class="active"{% endif %}><a href="{{ url_for('.show_yours') }}">Your Posts</a></li>
+
         {% endif %}
     </ul>
     {% include '_posts.html' %}
