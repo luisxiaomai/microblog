@@ -19,8 +19,7 @@ Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
 ## Contents
 
-  1. **Complete user authentication**(Register,Email Verification,Login,Forget/Reset Password)
-  
+  1. **Complete user authentication(Register,Email Verification,Login,Forget/Reset Password)**
 
   2. **Simple Blog System** 
   
