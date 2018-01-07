@@ -1,24 +1,16 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% import "_macros.html" as macros with context %}
-{% block head %}
-    {{ super() }}
-    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
-    
-{% endblock %}
 
-{% block backImage_content %}
+{% block entire_content %}
 <header class="masthead" style="background-image: url('static/images/home-bg.jpg')">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
               <h1>Blog Lite</h1>
-              <span class="subheading">A clean, lite blog system to record Life</span>
+              <span class="subheading">A clean, lite blog system to record your life</span>
             </div>
-          </div>
         </div>
       </div>
 </header>

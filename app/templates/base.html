@@ -79,16 +79,19 @@
 {% endblock %}
 
 {% block content %}    
-{% block backImage_content %}{% endblock %}
+    {% block entire_content %}
+    {% endblock %}
 
 
 <div class="container">
-{% block page_content %}{% endblock %}
     {% for message in get_flashed_messages()%}
     <div class="alert alert-warning">
         <button type="button", class="close" data-dimiss="alert">&times;</button>  
         {{message}}  
     </div> 
     {% endfor%}
+    {% block page_content %}{% endblock %}
+
 </div>
+
 {% endblock %}
