@@ -32,7 +32,7 @@
 {% endmacro %}
 
 {% macro markdownWidget(form) %}
-<div class="mark-down">
+<div class="post-container">
     <div class="post-thumbnail">
         <a href="{{ url_for('main.user', username=current_user.username) }}">
             <img class="img-rounded profile-thumbnail" src="{{ current_user.image_url }}">
@@ -105,7 +105,7 @@
                             {{ form.title(class="form-control input-block input-contrast",required='required',placeholder="Title",only_input=True) }}
                     </div>
                 {% endif %}
-                <div class="post-container" name="content">
+                <div class="post-richContextcontainer" name="content">
                         {{form.body(id="postContent",class="post-editor",style="visibility: hidden;")}}
                 </div>
                 <div  class="post-submit">

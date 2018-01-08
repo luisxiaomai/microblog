@@ -11,10 +11,6 @@ h2{
     color: #a94442;
 }
 
-.input-group-addon{
-  background-color: #4cae4c;
-  color: white;
-}
 
 /* Credit to bootsnipp.com for the css for the color graph */
 .colorgraph {
@@ -177,25 +173,14 @@ li.post{
     position: absolute;
 }
 
-li .post-body{c
+li .post-body{
   position: relative;
   padding: 10px 0;
   max-height: 200px;
   overflow: hidden;
   margin-bottom: 10px;
 }
-/*
-li .post-body::before {
-  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 50%);
-  content: '...';
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 70px;
-  width: 25%;
-  text-align: center;
-}
-*/
+
 
 li .post-content{
     margin-left:60px;
@@ -218,6 +203,7 @@ li .comment-thumbnail{
 .panel {
   position:relative;
   min-height: 60px;
+  margin-left:60px
 }
 
 .userLink{
@@ -357,6 +343,10 @@ a:hover {
   color:#586069;
 }
 
+#exTab2{
+  padding:10px;
+}
+
 #exTab2 li a{
   color:#586069;
 }
@@ -401,9 +391,7 @@ a:hover {
   padding: 10px;
 }
 
-#exTab2{
-  padding:10px;
-}
+
 
 .comment-markdown{
   float: left;
@@ -488,7 +476,7 @@ a:hover {
 #flask-pagedown-body-preview{
   min-height: 214px;
 }
-.post-container{
+.post-richContextcontainer{
   padding: 10px;
 }
 #post_submit{
@@ -512,22 +500,25 @@ textarea{
   max-height: none;
 }
 
-.nav-tabs { 
+.post-tabs .nav-tabs { 
   border-bottom: 2px solid #DDD;
  }
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+.post-tabs .nav-tabs > li.active > a, 
+.post-tabs .nav-tabs > li.active > a:focus, 
+.post-tabs .nav-tabs > li.active > a:hover {
    border-width: 0;
 }
-.nav-tabs > li > a { 
+.post-tabs .nav-tabs > li > a { 
   border: none; 
   color: #666; 
 }
-.nav-tabs > li.active > a, .nav-tabs > li > a:hover { 
+.post-tabs .nav-tabs > li.active > a,
+.post-tabs .nav-tabs > li > a:hover { 
   border: none; 
   color:rgba(52, 59, 64, 0.8) !important;
   background: transparent; 
 }
-.nav-tabs > li > a::after {
+.post-tabs .nav-tabs > li > a::after {
   content: "";
   background: rgba(52, 59, 64, 0.8); 
   height: 2px; 
@@ -538,11 +529,12 @@ textarea{
   transition: all 250ms ease 0s; 
   transform: scale(0);
 }
-.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { 
+.post-tabs .nav-tabs > li.active > a::after, 
+.post-tabs .nav-tabs > li:hover > a::after { 
   transform: scale(1); 
 }
 
-/* user profile css*/
+/* user profile page css*/
 .countlist li{
   padding: 0 30px 0 0;
   text-align:center;
@@ -583,6 +575,7 @@ textarea{
   color:#586069;
 }
 
+/* image background in index page*/
 header.masthead {
   margin-top:-70px;
   margin-bottom: 50px;
