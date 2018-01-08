@@ -1,14 +1,10 @@
-{% extends "base.html" %}
+{% extends "authTemplate.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block page_content %}
-<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+{% block formContent %}
     <form class="form" method="POST">
         {{ form.hidden_tag() }}  
         {{ wtf.form_errors(form, hiddens='only') }}        
-        <h2>Sign Up</h2> 
-        <hr class="colorgraph">
-
-
+        <h2>Sign Up</h2>                                     
         <div class="input-group {% if form.email.errors %} has-error {% endif %}"  >
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                 
@@ -50,5 +46,4 @@
 
         {{ wtf.form_field(form.submit,class="btn btn-success btn-block") }}
     </form>
-</div>
 {% endblock %}

@@ -20,7 +20,7 @@
 
 {% endblock %}
 {% block navbar %}
-<div class="navbar navbar-default navbar-fixed-top" style="color:rgb(30, 255, 0)" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -78,20 +78,24 @@
  
 {% endblock %}
 
-{% block content %}    
+
+
+{% block content %}   
+    <div class="container">    
+            {% for message in get_flashed_messages()%}
+            <div class="alert alert-warning" >
+                <button type="button", class="close" data-dimiss="alert">&times;</button>  
+                {{message}}  
+            </div> 
+            {% endfor%}  
+
+    </div>
+
     {% block entire_content %}
     {% endblock %}
 
-
-<div class="container">
-    {% for message in get_flashed_messages()%}
-    <div class="alert alert-warning">
-        <button type="button", class="close" data-dimiss="alert">&times;</button>  
-        {{message}}  
-    </div> 
-    {% endfor%}
-    {% block page_content %}{% endblock %}
-
-</div>
+    <div class="container">
+        {% block page_content %}{% endblock %}
+    </div>
 
 {% endblock %}

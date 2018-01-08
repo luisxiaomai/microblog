@@ -24,6 +24,7 @@ def unconfirmed():
 
 @auth.route("/login",  methods=["GET","POST"])
 def login():
+    loginError = None
     if current_user.is_authenticated:
         return redirect(url_for("main.index"))
     form = LoginForm()
@@ -32,8 +33,8 @@ def login():
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
             return redirect(request.args.get("next") or url_for("main.index"))
-        flash("Invalid emial or password")
-    return render_template("auth/login.html", form=form)
+        loginError="Invalid emial or password"
+    return render_template("auth/login.html", form=form,loginError=loginError)
 
 @auth.route("/logout", methods=["GET","POST"])
 @login_required

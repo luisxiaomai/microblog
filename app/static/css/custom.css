@@ -3,6 +3,7 @@ body{
   padding-top: 70px;
 
 }
+
 h2{
   color:#586069;
 }
@@ -577,16 +578,17 @@ textarea{
 
 /* image background in index page*/
 header.masthead {
+  background: url(../images/home-bg.jpg) no-repeat center center;
   margin-top:-70px;
-  margin-bottom: 50px;
-  background: no-repeat center center;
+  margin-bottom: 30px;
   background-color: #868e96;
   background-attachment: scroll;
   position: relative;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover; }
+  background-size: cover;
+  z-index:-1; }
   header.masthead .overlay {
     position: absolute;
     top: 0;
@@ -650,3 +652,57 @@ header.masthead {
       
 }
 
+
+/* authTemplate css*/
+    .main-section{
+        background:url(../images/home-bg.jpg) no-repeat;
+        background-size:100% 100%;
+        bottom:0px;
+        top:0px;
+        margin: 0px;
+        position:absolute;
+        width: 100%;
+        z-index:-1;
+    }
+
+    .authTemplateForm{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 300px;
+      color:#b9bec1;
+      padding: 10px;
+    }
+    .authTemplateForm a,
+    .authTemplateForm a:hover{
+      color:#b9bec1;
+    }
+
+    .authTemplate-main{
+        padding: 30px;
+        background-color:rgba(52, 59, 64, 0.5);
+        border-radius:5px;
+        box-shadow: 0 0 5px 0 #161617;
+    }
+
+    .authTemplate-box a,.authTemplate-box a:hover{
+        width: 100%;
+        font-weight:600;
+    }
+    .authTemplateForm h2{
+        margin-bottom: 30px;
+        margin-top: 0;
+        color:white;
+    }
+    .main-section .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #212529;
+        opacity: 0.5;
+    }

@@ -3,8 +3,11 @@
 {% import "_macros.html" as macros with context %}
 
 {% block entire_content %}
-<header class="masthead" style="background-image: url('static/images/home-bg.jpg')">
+<header class="masthead">
       <div class="overlay"></div>
+      
+
+
       <div class="container">
         <div class="row">
             <div class="site-heading">
@@ -35,8 +38,4 @@
     </div>
 {% endif %}
 
-{% endblock %}
-{% block scripts %}
-    {{ super() }}
-    {{ pagedown.include_pagedown() }}
 {% endblock %}
