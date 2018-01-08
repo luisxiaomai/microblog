@@ -7,7 +7,7 @@
                             <img class="comment img-rounded" src="{{ comment.author.image_url }}">
                         </a>
                     </div>
-                    <div class="panel panel-default">
+                    <div class="comment panel panel-default">
                         <div class="panel-heading">
                             <strong>
                                 <a class="userLink" href="{{ url_for('main.user', username=comment.author.username) }}">{{ comment.author.username }}</a>

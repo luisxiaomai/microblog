@@ -208,9 +208,10 @@ li .comment-thumbnail{
 .panel {
   position:relative;
   min-height: 60px;
-  margin-left:60px
 }
-
+.panel.comment{
+    margin-left:60px;
+}
 .userLink{
   color:#999;
   
