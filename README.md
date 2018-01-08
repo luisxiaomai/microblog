@@ -1,5 +1,5 @@
-# Flask-Study-App
-Study application for flask web development.
+# Flask_Blog_System
+A study blog system which used flask, bootstrap...
 
 ## Requirements
 
