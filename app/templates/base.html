@@ -11,7 +11,7 @@
     {{ super() }}
     {{ moment.include_moment() }}
     {# moment.lang('es') #}
-  
+
 {% endblock %}
 {% block head %}
     {{ super() }}
@@ -81,16 +81,22 @@
 
 
 {% block content %}   
-    <div class="container">    
+    <div class="alert container">    
             {% for message in get_flashed_messages()%}
-            <div class="alert alert-warning" >
-                <button type="button", class="close" data-dimiss="alert">&times;</button>  
+            <div class="alert alert-warning  alert-dismissible" >
+                <button type="button" class="close" data-dimiss="alert"><span aria-hidden="true">&times;</span></button>  
                 {{message}}  
             </div> 
             {% endfor%}  
 
     </div>
-
+    <script>
+        window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 2000);
+    </script>
     {% block entire_content %}
     {% endblock %}
 

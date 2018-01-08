@@ -27,9 +27,6 @@ def index():
         query = Post.query.filter_by(author=current_user)
     else:
         query = Post.query
-    print(show_yours)
-    print(show_followed)
-    print(query)
     pagination = query.order_by(Post.timestamp.desc()).paginate(page, per_page=current_app.config['FLASKY_POSTS_PER_PAGE'], error_out=False)
     posts = pagination.items
     return render_template('index.html', form=form, posts=posts,show_followed=show_followed, pagination=pagination,show_yours=show_yours)

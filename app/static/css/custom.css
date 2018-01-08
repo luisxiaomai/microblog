@@ -11,7 +11,11 @@ h2{
 .help-block{
     color: #a94442;
 }
-
+.alert.container{
+  position: fixed;
+  left:0;
+  right:0;
+}
 
 /* Credit to bootsnipp.com for the css for the color graph */
 .colorgraph {
