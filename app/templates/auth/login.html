@@ -14,12 +14,12 @@
             <span class="glyphicon glyphicon-remove form-control-feedback"></span>
         </div>
         {% if loginError %}
-            <div class="form-group has-erroTruer">
+            <div class="form-group has-error">
                 <p class="help-block">{{ loginError }}</p>                                
             </div>
         {% endif %}
         {% for error in form.email.errors %}
-            <div class="form-group has-erroTruer">
+            <div class="form-group has-error">
                 <p class="help-block">{{ error }}</p>                                
             </div>
         {% endfor %}
