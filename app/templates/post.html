@@ -33,7 +33,9 @@
 
 {% block scripts %}
     {{ super() }}
-    {{ pagedown.include_pagedown() }}    
+    <script type="text/javascript" src="/static/js/Markdown.Converter.min.js"></script> 
+    <script type="text/javascript" src="/static/js/Markdown.Sanitizer.min.js"></script> 
+    
     <!--
 
     <script type="text/javascript">
