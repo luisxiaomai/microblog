@@ -41,11 +41,6 @@
     <div class="timeline-comment">
             <form class="form" method="POST">  
                 {{ form.hidden_tag() }}  
-                {% if form.__class__.__name__=="PostForm" %}
-                    <div class="discussion-topic-header">
-                            {{ form.title(class="form-control input-block input-contrast",required='required',placeholder="Title",only_input=True) }}
-                    </div>
-                {% endif %}
                 <div id="exTab2" >	
                         <ul class="nav nav-tabs">
                             <li class="active">
@@ -100,11 +95,9 @@
             <form class="form" method="POST">  
                 {{ form.hidden_tag() }} 
                  
-                {% if form.__class__.__name__=="PostForm" %}
-                    <div class="discussion-topic-header">
-                            {{ form.title(class="form-control input-block input-contrast",required='required',placeholder="Title",only_input=True) }}
-                    </div>
-                {% endif %}
+                <div class="discussion-topic-header">
+                        {{ form.title(class="form-control input-block input-contrast",required='required',placeholder="Title",only_input=True) }}
+                </div>
                 <div class="post-richContextcontainer" name="content">
                         {{form.body(id="postContent",class="post-editor",style="visibility: hidden;")}}
                 </div>

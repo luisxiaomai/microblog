@@ -10,6 +10,13 @@
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment(local_js="/static/js/moment-with-locales.min.js") }}
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove(); 
+            });
+        }, 2000);
+    </script>
     {# moment.lang('es') #}
 
 {% endblock %}
@@ -88,7 +95,7 @@
                 {{message}}  
             </div> 
             {% endfor%}  
-
+ 
     </div>
     
     {% block entire_content %}
