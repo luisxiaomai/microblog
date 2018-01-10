@@ -1,5 +1,5 @@
 # Flask_Blog_System
-A study blog system which used flask, bootstrap...
+A blog system written in flask that I developed when I study flask
 
 ## Requirements
 
