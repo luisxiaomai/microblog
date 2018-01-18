@@ -1,9 +1,7 @@
 # Flask_Blog_System
 A blog system written in flask that I developed when I study flask
 
-## Run
-
-### Local 
+## Local Run
 
   [Python 3+](https://www.python.org/downloads/) need be installed
 
@@ -16,7 +14,7 @@ A blog system written in flask that I developed when I study flask
   ```
   Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
-### Docker
+## Docker Run
 
   ```bash	
   docker pull luislu/microblog
