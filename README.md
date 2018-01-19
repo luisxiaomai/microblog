@@ -1,21 +1,26 @@
 # Flask_Blog_System
 A blog system written in flask that I developed when I study flask
 
-## Requirements
+## Local Run
 
-[Python 3+](https://www.python.org/downloads/) need be installed
+  [Python 3+](https://www.python.org/downloads/) need be installed
 
-## Installation
-```
-pip install -r requirements.txt
-```
+  ```
+  pip install -r requirements.txt
+  ```
+  
+  ```bash	
+  python manage.py runserver
+  ```
+  Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
-## Run
+## Docker Run
 
-```bash	
-python manage.py runserver
-```
-Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
+  ```bash	
+  docker pull luislu/microblog
+  docker run -d -p 5000:5000 luislu/microblog
+  ```
+  Navigate to http://127.0.0.1:5000, and then use xx@xx.com/xx to login.
 
 ## Contents
 
