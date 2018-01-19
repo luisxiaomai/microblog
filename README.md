@@ -30,6 +30,13 @@ A blog system written in flask that I developed when I study flask
   
   - **Simple Blog System** 
   ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/Blog_Lite.png)
+  
+  - **RichText Editor** 
+  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/editor.png)
+  
+  - **Markdown Editor** 
+  ![alt text](https://github.com/luisxiaomai/Images/blob/master/Flask_Study_App/comments.png)
+  
 
  
 
