@@ -11,11 +11,13 @@
                 <div class="post-author"><strong><a class="userLink" href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.username }}</a></strong>&nbsp;&nbsp;&nbsp;<strong style="color:#999">·</strong>&nbsp;</div>
                 <div class="post-date"><strong> {{ moment(post.timestamp).format('LL') }}</strong> </div>
                 <div {% if show_more != False %} class="post-body" {% else %} class="single post-body" {% endif %} >
-                {% if post.body_html %}
-                    {{ post.body_html | safe }}
+
+                {% if show_more != False %}
+                    {{ post.body | safe | striptags|truncate(length=500, killwords=False, end="......") }}
                 {% else %}
                     {{ post.body | safe }}
                 {% endif %}
+
                 </div>
                 <div class="post-footer">
                     {% if show_more != False %}
